@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chayan Narang — Senior Product Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#080808;color:#e8e4dc;font-family:'Space Grotesk',sans-serif;overflow-x:hidden;}
+canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.35;}
+.site{position:relative;z-index:1;}
+
+nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 2.5rem;position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,8,8,0.88);backdrop-filter:blur(16px);border-bottom:0.5px solid rgba(255,255,255,0.04);}
+.nav-logo{font-family:'Space Mono',monospace;font-size:13px;letter-spacing:0.15em;color:#c8a254;}
+.nav-links{display:flex;gap:2rem;}
+.nav-links a{font-size:12px;color:rgba(232,228,220,0.35);text-decoration:none;letter-spacing:0.08em;transition:color 0.3s;}
+.nav-links a:hover{color:#e8e4dc;}
+
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 440px;padding-top:72px;position:relative;}
+.hero-right{position:relative;overflow:hidden;}
+.portrait{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;filter:contrast(1.08) brightness(0.92);}
+.glow{position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 60% 30%, rgba(200,130,40,0.18) 0%, transparent 65%);}
+.fade-left{position:absolute;top:0;left:0;bottom:0;width:55%;background:linear-gradient(to right,#080808 0%,rgba(8,8,8,0.7) 50%,transparent 100%);}
+.fade-bottom{position:absolute;bottom:0;left:0;right:0;height:30%;background:linear-gradient(to top,#080808 0%,transparent 100%);}
+
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:4rem 2rem 4rem 2.5rem;z-index:2;}
+.eyebrow{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(200,162,84,0.55);margin-bottom:1.5rem;display:flex;align-items:center;gap:12px;opacity:0;animation:fadeUp 0.8s ease 0.2s forwards;}
+.eyebrow::before{content:'';width:28px;height:0.5px;background:#c8a254;opacity:0.55;}
+.headline{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.8rem,5.5vw,5.8rem);line-height:0.93;letter-spacing:0.03em;color:#f0ede6;margin-bottom:1.5rem;opacity:0;animation:fadeUp 0.9s ease 0.4s forwards;}
+.headline .accent{color:#c8a254;}
+.subhead{font-size:0.9rem;color:rgba(232,228,220,0.38);max-width:400px;line-height:1.8;margin-bottom:2rem;opacity:0;animation:fadeUp 0.9s ease 0.6s forwards;}
+.domains{display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:2rem;opacity:0;animation:fadeUp 0.9s ease 0.7s forwards;}
+.domain-tag{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;padding:4px 10px;border:0.5px solid rgba(200,162,84,0.2);color:rgba(200,162,84,0.5);}
+.cta-row{display:flex;align-items:center;gap:1.5rem;opacity:0;animation:fadeUp 0.9s ease 0.85s forwards;}
+.btn-primary{font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#080808;background:#c8a254;border:none;padding:12px 28px;cursor:pointer;text-decoration:none;display:inline-block;transition:opacity 0.2s;}
+.btn-primary:hover{opacity:0.82;}
+.btn-ghost{font-size:12px;color:rgba(232,228,220,0.32);text-decoration:none;letter-spacing:0.06em;transition:color 0.2s;}
+.btn-ghost:hover{color:#e8e4dc;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+
+.stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:0.5px solid rgba(255,255,255,0.05);border-bottom:0.5px solid rgba(255,255,255,0.05);}
+.stat{padding:2.5rem;border-right:0.5px solid rgba(255,255,255,0.05);}
+.stat:last-child{border-right:none;}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:4rem;line-height:1;color:#f0ede6;letter-spacing:0.02em;}
+.stat-num span{color:#c8a254;font-size:2.2rem;}
+.stat-label{font-size:11px;color:rgba(232,228,220,0.28);line-height:1.6;margin-top:0.4rem;}
+
+.work{padding:4rem 2.5rem;}
+.section-label{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(232,228,220,0.18);margin-bottom:2.5rem;display:flex;align-items:center;gap:16px;}
+.section-label::after{content:'';flex:1;height:0.5px;background:rgba(255,255,255,0.05);}
+.case{display:grid;grid-template-columns:1.3fr 0.7fr;border:0.5px solid rgba(255,255,255,0.05);margin-bottom:1px;transition:all 0.3s;background:rgba(255,255,255,0.008);}
+.case:hover{border-color:rgba(200,162,84,0.18);background:rgba(200,162,84,0.015);}
+.case-left{padding:2.5rem;border-right:0.5px solid rgba(255,255,255,0.05);}
+.case-right{padding:2.5rem;display:flex;flex-direction:column;justify-content:center;gap:1.5rem;}
+.case-co{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:#c8a254;opacity:0.55;margin-bottom:0.6rem;}
+.case-title{font-size:1rem;font-weight:600;color:#e8e4dc;line-height:1.4;margin-bottom:0.6rem;}
+.case-desc{font-size:12px;color:rgba(232,228,220,0.32);line-height:1.7;}
+.metric-val{font-family:'Bebas Neue',sans-serif;font-size:2.6rem;color:#f0ede6;line-height:1;letter-spacing:0.02em;}
+.metric-val em{font-style:normal;color:#c8a254;font-size:1.5rem;}
+.metric-label{font-size:11px;color:rgba(232,228,220,0.25);margin-top:4px;}
+
+.avail{padding:0 2.5rem 4rem;}
+.avail-box{border:0.5px solid rgba(200,162,84,0.12);padding:2.5rem;display:flex;justify-content:space-between;align-items:center;background:rgba(200,162,84,0.015);}
+.avail-status{display:flex;align-items:center;gap:10px;margin-bottom:0.5rem;}
+.dot{width:7px;height:7px;border-radius:50%;background:#4ade80;animation:breathe 2.5s ease-in-out infinite;}
+@keyframes breathe{0%,100%{opacity:1;}50%{opacity:0.3;}}
+.avail-live{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#4ade80;}
+.avail-detail{font-size:12px;color:rgba(232,228,220,0.28);line-height:1.6;}
+.avail-links{display:flex;gap:1rem;}
+.link-btn{font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:rgba(232,228,220,0.32);text-decoration:none;border:0.5px solid rgba(255,255,255,0.07);padding:10px 20px;transition:all 0.2s;background:transparent;font-family:'Space Grotesk',sans-serif;cursor:pointer;}
+.link-btn:hover{color:#e8e4dc;border-color:rgba(200,162,84,0.3);}
+
+footer{border-top:0.5px solid rgba(255,255,255,0.04);padding:1.5rem 2.5rem;display:flex;justify-content:space-between;}
+.footer-name{font-family:'Space Mono',monospace;font-size:10px;color:rgba(232,228,220,0.14);letter-spacing:0.12em;}
+.footer-creds{font-size:11px;color:rgba(232,228,220,0.14);}
+
+@media(max-width:768px){
+.hero{grid-template-columns:1fr;}
+.hero-right{height:60vw;}
+.stats{grid-template-columns:1fr;}
+.stat{border-right:none;border-bottom:0.5px solid rgba(255,255,255,0.05);}
+.case{grid-template-columns:1fr;}
+.case-left{border-right:none;border-bottom:0.5px solid rgba(255,255,255,0.05);}
+.avail-box{flex-direction:column;gap:1.5rem;align-items:flex-start;}
+}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div class="site">
+  <nav>
+    <span class="nav-logo">CN_</span>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
+      <a href="https://www.linkedin.com/in/chayan-narang/" target="_blank">LinkedIn ↗</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-left">
+      <div class="eyebrow">Senior Product Manager</div>
+      <h1 class="headline">I don't<br>manage<br>products.<br>I fix the<br>ones that<br>are <span class="accent">bleeding.</span></h1>
+      <p class="subhead">Nine years turning platform nightmares into working products. SPJIMR MBA. Zero notice period.</p>
+      <div class="domains">
+        <span class="domain-tag">BFSI</span>
+        <span class="domain-tag">Automotive</span>
+        <span class="domain-tag">Enterprise SaaS</span>
+        <span class="domain-tag">Digital Transformation</span>
+      </div>
+      <div class="cta-row">
+        <a href="mailto:pgpm2021.chayan@spjimr.org" class="btn-primary">Get in touch</a>
+        <a href="https://www.linkedin.com/in/chayan-narang/" target="_blank" class="btn-ghost">LinkedIn ↗</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <img class="portrait" src="https://raw.githubusercontent.com/chayannarang/Portfolio/main/Gemini_Generated_Image_hl4gmehl4gmehl4g.png" alt="Chayan Narang"/>
+      <div class="glow"></div>
+      <div class="fade-left"></div>
+      <div class="fade-bottom"></div>
+    </div>
+  </section>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">$1.5<span>M</span></div>
+      <div class="stat-label">ARR protected through revenue-weighted prioritization at Upland</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">60<span>+</span></div>
+      <div class="stat-label">Tenant sites migrated to AEM Cloud — global automotive platform</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">50<span>–60%</span></div>
+      <div class="stat-label">NPS recovery at Fidelity UK through data-led stabilization</div>
+    </div>
+  </div>
+
+  <section class="work" id="work">
+    <div class="section-label">Selected work</div>
+    <div class="case">
+      <div class="case-left">
+        <div class="case-co">Publicis Sapient · 2025–2026</div>
+        <div class="case-title">AEM Cloud migration — 60+ tenant global automotive platform</div>
+        <div class="case-desc">Defined target-state landing-zone architecture and mono-repo CI/CD governance for a fragmented on-prem estate. Aligned resistant BU architects onto a controlled-autonomy model under hard deadline pressure.</div>
+      </div>
+      <div class="case-right">
+        <div><div class="metric-val">60<em>–70%</em></div><div class="metric-label">Reduction in manual migration effort</div></div>
+        <div><div class="metric-val">80<em>%</em></div><div class="metric-label">Page-load improvement vs legacy CMS</div></div>
+      </div>
+    </div>
+    <div class="case">
+      <div class="case-left">
+        <div class="case-co">Upland Software · 2022–2024</div>
+        <div class="case-title">Snowflake consolidation — $1.5M ARR saved from churn</div>
+        <div class="case-desc">Introduced revenue-weighted prioritization across 50+ backlog items. Led phased SQL-to-Snowflake migration. Doubled platform reporting adoption through standardized Qlik dashboards.</div>
+      </div>
+      <div class="case-right">
+        <div><div class="metric-val">30<em>→60%</em></div><div class="metric-label">Platform adoption uplift</div></div>
+        <div><div class="metric-val">80<em>%</em></div><div class="metric-label">Latency cut — 3–5s to under 1s</div></div>
+      </div>
+    </div>
+    <div class="case">
+      <div class="case-left">
+        <div class="case-co">Fidelity International · 2020–2021</div>
+        <div class="case-title">NPS recovery — UK Personal Investing D2C platform</div>
+        <div class="case-desc">Triangulated Medallia voice-of-customer, Decibel behavioral analytics, and API failure logs to surface recurring production defects. Escalated into prioritized roadmap fixes recognized by the Head of UK Personal Investing.</div>
+      </div>
+      <div class="case-right">
+        <div><div class="metric-val">50<em>–60%</em></div><div class="metric-label">NPS relative improvement</div></div>
+        <div><div class="metric-val">0</div><div class="metric-label">Cash-integrity incidents — defect contained pre-production</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="avail" id="contact">
+    <div class="avail-box">
+      <div>
+        <div class="avail-status"><span class="dot"></span><span class="avail-live">Available now</span></div>
+        <div class="avail-detail">Zero notice period · India · Dubai/UAE · Singapore · Contract or full-time</div>
+      </div>
+      <div class="avail-links">
+        <a href="mailto:pgpm2021.chayan@spjimr.org" class="link-btn">Email</a>
+        <a href="https://www.linkedin.com/in/chayan-narang/" target="_blank" class="link-btn">LinkedIn ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="footer-name">CHAYAN NARANG</span>
+    <span class="footer-creds">SPJIMR MBA · CSPO · Azure AZ-900</span>
+  </footer>
+</div>
+
+<script>
+const canvas=document.getElementById('c');
+const ctx=canvas.getContext('2d');
+let W,H,particles=[],gridTargets=[],prog=0,going=true;
+const N=100;
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;buildGrid();}
+function buildGrid(){const cols=10,rows=8,gw=W*.65,gh=H*.65,ox=W*.17,oy=H*.17;gridTargets=[];let i=0;for(let r=0;r<rows&&i<N;r++)for(let c=0;c<cols&&i<N;c++,i++)gridTargets.push({x:ox+c/(cols-1)*gw,y:oy+r/(rows-1)*gh});}
+function init(){particles=[];for(let i=0;i<N;i++)particles.push({x:Math.random()*window.innerWidth,y:Math.random()*window.innerHeight,vx:(Math.random()-.5)*.6,vy:(Math.random()-.5)*.6,r:Math.random()*1.2+.4,gold:Math.random()>.7,a:Math.random()*.3+.08,ph:Math.random()*Math.PI*2});}
+function ease(t){return t<.5?2*t*t:-1+(4-2*t)*t;}
+let lt=0;
+function draw(ts){requestAnimationFrame(draw);const dt=Math.min(ts-lt,32);lt=ts;ctx.clearRect(0,0,W,H);if(going){prog+=dt*.00028;if(prog>=1){prog=1;going=false;}}
+const e=ease(Math.min(prog,1));
+particles.forEach((p,i)=>{const t=gridTargets[i]||{x:p.x,y:p.y};const tx=p.x+(t.x-p.x)*e,ty=p.y+(t.y-p.y)*e;if(!going){p.x+=p.vx*.12;p.y+=p.vy*.12;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;}
+const pulse=.7+.3*Math.sin(ts*.0008+p.ph);
+ctx.beginPath();ctx.arc(tx,ty,p.r,0,Math.PI*2);ctx.fillStyle=p.gold?`rgba(200,162,84,${p.a*pulse})`:`rgba(240,237,230,${p.a*pulse})`;ctx.fill();});
+if(e>.35){const la=(e-.35)/.65*.04;ctx.strokeStyle=`rgba(240,237,230,${la})`;ctx.lineWidth=.4;const cols=10,rows=8,gw=W*.65,gh=H*.65,ox=W*.17,oy=H*.17;for(let r=0;r<rows;r++){ctx.beginPath();for(let c=0;c<cols;c++){const x=ox+c/(cols-1)*gw,y=oy+r/(rows-1)*gh;c===0?ctx.moveTo(x,y):ctx.lineTo(x,y);}ctx.stroke();}for(let c=0;c<cols;c++){ctx.beginPath();for(let r=0;r<rows;r++){const x=ox+c/(cols-1)*gw,y=oy+r/(rows-1)*gh;r===0?ctx.moveTo(x,y):ctx.lineTo(x,y);}ctx.stroke();}}}
+window.addEventListener('resize',resize);resize();init();requestAnimationFrame(draw);
+</script>
+</body>
+</html>
