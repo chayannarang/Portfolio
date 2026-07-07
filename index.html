@@ -87,18 +87,40 @@ nav{
 }
 .bleeding{color:#e05a24;text-shadow:0 0 42px rgba(224,90,36,0.32);}
 
+.proofline{
+  font-family:'Space Mono',monospace;
+  font-size:12.5px;letter-spacing:0.02em;
+  color:#e8c987;
+  margin-bottom:1.4rem;line-height:1.7;
+  opacity:0;animation:fadeUp 0.9s ease 0.55s forwards;
+}
+
 .subhead{
-  font-size:1.1rem;
-  color:rgba(240,237,230,0.9);
-  max-width:420px;line-height:1.75;margin-bottom:1.8rem;
-  opacity:0;animation:fadeUp 0.9s ease 0.5s forwards;
+  font-size:1.05rem;
+  color:rgba(240,237,230,0.82);
+  max-width:420px;line-height:1.7;margin-bottom:1.9rem;
+  opacity:0;animation:fadeUp 0.9s ease 0.62s forwards;
   font-weight:400;
 }
 
 .domains{
-  display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2.2rem;
-  opacity:0;animation:fadeUp 0.9s ease 0.65s forwards;
+  display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1.4rem;
+  opacity:0;animation:fadeUp 0.9s ease 0.48s forwards;
 }
+
+.scroll-cue{
+  position:absolute;bottom:2rem;left:2.5rem;z-index:3;
+  display:flex;align-items:center;gap:10px;
+  font-family:'Space Mono',monospace;font-size:9px;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:rgba(200,162,84,0.6);
+  opacity:0;animation:fadeUp 1s ease 1.1s forwards;
+}
+.scroll-cue .line{
+  display:inline-block;width:34px;height:0.5px;background:#c8a254;
+  animation:cueSlide 1.8s ease-in-out infinite;
+}
+@keyframes cueSlide{0%,100%{transform:scaleX(0.5);opacity:0.4;transform-origin:left;}50%{transform:scaleX(1);opacity:1;transform-origin:left;}}
 .domain-tag{
   font-family:'Space Mono',monospace;font-size:9px;
   letter-spacing:0.12em;text-transform:uppercase;
@@ -277,16 +299,17 @@ footer{
       <h1 class="headline">
         I DON'T<br>MANAGE<br>PRODUCTS.<br>I FIX THE<br>ONES THAT<br>ARE <span class="bleeding">BLEEDING.</span>
       </h1>
-      <p class="subhead">Nine years turning platform nightmares into working products across BFSI, Automotive, and Enterprise SaaS.</p>
       <div class="domains">
-        <span class="domain-tag">Digital Transformation</span>
-        <span class="domain-tag">Cloud Migration</span>
         <span class="domain-tag">Enterprise B2B SaaS</span>
+        <span class="domain-tag">Cloud Migration</span>
+        <span class="domain-tag">Digital Transformation</span>
         <span class="domain-tag">AI-Native PM</span>
       </div>
+      <p class="proofline">$1.5M ARR protected · 60+ tenant cloud migration · 50–60% NPS recovery</p>
+      <p class="subhead">Nine years turning platform nightmares into working products across BFSI, Automotive, and Enterprise SaaS.</p>
       <div class="cta-row">
-        <a href="mailto:pgpm2021.chayan@spjimr.org" class="btn-primary">Get in touch</a>
-        <a href="https://www.linkedin.com/in/chayan-narang/" target="_blank" class="btn-ghost">LinkedIn ↗</a>
+        <a href="#work" class="btn-primary">View work ↓</a>
+        <a href="https://raw.githubusercontent.com/chayannarang/Portfolio/main/Chayan_Narang_CV_Master.docx" download class="btn-ghost">Download CV ↓</a>
       </div>
     </div>
     <div class="hero-right">
@@ -296,6 +319,7 @@ footer{
       <div class="fade-top"></div>
       <div class="fade-bottom"></div>
     </div>
+    <a href="#work" class="scroll-cue"><span class="line"></span>Scroll — selected work</a>
   </section>
 
   <div class="stats">
