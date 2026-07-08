@@ -4,485 +4,284 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Chayan Narang — Senior Product Manager</title>
+<meta name="description" content="Senior Product Manager. The product decisions that keep enterprise transformation moving. Enterprise platform strategy, cloud migration, digital transformation across SaaS, BFSI and automotive.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+:root{
+  --paper:#FBFBF9;--ink:#1A1A17;--muted:#63635C;--faint:#9A9A90;
+  --line:#E6E5DF;--line-soft:#EFEEE9;--accent:#2B3A55;--accent-ink:#22304A;--panel:#F5F4F0;
+}
 *{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{background:#070707;color:#e8e4dc;font-family:'Space Grotesk',sans-serif;overflow-x:hidden;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+body{background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+::selection{background:#2B3A5522;}
+.wrap{max-width:1000px;margin:0 auto;padding:0 2.5rem;}
 
-body::before{
-  content:'';position:fixed;top:0;left:0;right:0;bottom:0;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  opacity:0.03;pointer-events:none;z-index:999;
-}
+nav{position:sticky;top:0;z-index:50;background:rgba(251,251,249,0.82);backdrop-filter:blur(14px) saturate(1.4);border-bottom:1px solid var(--line);}
+.nav-inner{max-width:1000px;margin:0 auto;padding:1.05rem 2.5rem;display:flex;justify-content:space-between;align-items:center;}
+.nav-name{font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:0.01em;color:var(--ink);font-weight:500;}
+.nav-links{display:flex;gap:1.7rem;align-items:center;}
+.nav-links a{font-size:13.5px;color:var(--muted);text-decoration:none;transition:color .2s ease;}
+.nav-links a:hover{color:var(--ink);}
+.nav-cv{font-size:12.5px;font-weight:500;color:var(--paper)!important;background:var(--accent);padding:7px 15px;border-radius:5px;transition:background .2s ease;}
+.nav-cv:hover{background:var(--accent-ink);}
+.nav-li{font-size:12.5px;font-weight:500;color:var(--accent)!important;background:var(--panel);border:1px solid #2B3A5530;padding:6px 14px;border-radius:5px;transition:all .2s ease;}
+.nav-li:hover{background:#2B3A5512;border-color:#2B3A5555;}
 
-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
-.site{position:relative;z-index:1;}
+.hero{padding:7rem 0 5rem;}
+.status{display:inline-flex;align-items:center;gap:9px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);letter-spacing:0.01em;margin-bottom:2.4rem;}
+.status .dot{width:7px;height:7px;border-radius:50%;background:#3FA76B;box-shadow:0 0 0 3px #3FA76B22;}
+.hero h1{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:clamp(2.5rem,5vw,4rem);line-height:1.1;letter-spacing:-0.018em;max-width:18ch;margin-bottom:2.2rem;color:var(--ink);}
+.hero-body{max-width:60ch;}
+.hero-body p{font-size:1.12rem;line-height:1.72;color:var(--muted);margin-bottom:1.1rem;}
+.hero-body p:first-child{color:var(--ink);}
+.hero-q{list-style:none;margin:0.4rem 0 1.5rem;}
+.hero-q li{font-size:1.12rem;line-height:1.7;color:var(--ink);padding-left:1.4rem;position:relative;margin-bottom:0.35rem;}
+.hero-q li::before{content:'';position:absolute;left:0;top:0.72em;width:6px;height:1px;background:var(--accent);}
+.hero-close{font-size:1.12rem!important;color:var(--ink)!important;font-weight:500;}
+.meta{display:flex;gap:1.4rem;flex-wrap:wrap;margin-top:2.6rem;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--faint);}
+.meta span{position:relative;}
+.meta span:not(:last-child)::after{content:'';position:absolute;right:-0.8rem;top:50%;transform:translateY(-50%);width:3px;height:3px;border-radius:50%;background:var(--line);}
 
-/* NAV */
-nav{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:1.2rem 2.5rem;
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  background:rgba(7,7,7,0.92);backdrop-filter:blur(20px);
-  border-bottom:0.5px solid rgba(255,255,255,0.06);
-}
-.nav-logo{font-family:'Space Mono',monospace;font-size:13px;letter-spacing:0.15em;color:#c8a254;}
-.nav-right{display:flex;gap:2rem;align-items:center;}
-.nav-right a{font-size:12px;color:rgba(232,228,220,0.6);text-decoration:none;letter-spacing:0.06em;transition:color 0.3s;}
-.nav-right a:hover{color:#f5f2eb;}
-.nav-cv{
-  font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;
-  color:#070707 !important;background:#c8a254;
-  padding:8px 18px;transition:opacity 0.2s !important;
-}
-.nav-cv:hover{opacity:0.85;}
+.hero-actions{display:flex;gap:0.9rem;flex-wrap:wrap;margin-top:2rem;}
+.hero-actions .btn-primary{font-size:14.5px;padding:13px 28px;}
+.hero-actions .btn-line{font-size:14.5px;padding:13px 24px;}
 
-/* HERO */
-.hero{
-  min-height:100vh;display:grid;grid-template-columns:1fr 560px;
-  padding-top:60px;position:relative;overflow:hidden;
+.hero-hook{
+  display:block;text-decoration:none;margin-top:3.2rem;padding-top:1.8rem;
+  border-top:1px dashed var(--line);max-width:56ch;
 }
-.hero-right{position:relative;overflow:hidden;}
-.portrait{
-  width:100%;height:100%;
-  object-fit:cover;object-position:38% 12%;
-  display:block;
-  filter:contrast(1.1) brightness(0.88) saturate(0.9);
-  transform:scale(1.18);transform-origin:32% 15%;
+.hook-q{
+  display:block;font-family:'Fraunces',serif;font-style:italic;font-weight:400;
+  font-size:1.2rem;line-height:1.5;color:var(--ink);letter-spacing:-0.005em;
+  transition:color .2s ease;
 }
-.glow-orb{
-  position:absolute;top:-5%;right:-8%;width:78%;height:65%;
-  background:radial-gradient(ellipse,rgba(210,120,20,0.22) 0%,transparent 68%);
-  pointer-events:none;
-}
-.fade-left{
-  position:absolute;top:0;left:0;bottom:0;width:58%;
-  background:linear-gradient(to right,#070707 0%,rgba(7,7,7,0.78) 42%,transparent 100%);
-}
-.fade-top{position:absolute;top:0;left:0;right:0;height:15%;background:linear-gradient(to bottom,#070707,transparent);}
-.fade-bottom{position:absolute;bottom:0;left:0;right:0;height:38%;background:linear-gradient(to top,#070707,transparent);}
-
-.hero-left{
-  display:flex;flex-direction:column;justify-content:center;
-  padding:4rem 1rem 4rem 2.5rem;z-index:2;
-}
-.eyebrow{
-  font-family:'Space Mono',monospace;font-size:11px;
-  letter-spacing:0.2em;text-transform:uppercase;
-  color:#d4b06a;
-  margin-bottom:1.4rem;display:flex;align-items:center;gap:12px;
-  opacity:0;animation:fadeUp 0.8s ease 0.15s forwards;
-}
-.eyebrow::before{content:'';width:26px;height:0.5px;background:#c8a254;}
-
-.headline{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(4.2rem,6.5vw,7rem);
-  line-height:0.92;letter-spacing:0.025em;
-  color:#f7f4ed;
-  margin-bottom:1.6rem;
-  opacity:0;animation:fadeUp 0.9s ease 0.3s forwards;
-}
-.bleeding{color:#e05a24;text-shadow:0 0 42px rgba(224,90,36,0.32);}
-
-.proofstats{
-  display:flex;align-items:flex-end;gap:1.4rem;flex-wrap:wrap;
-  margin-bottom:1.6rem;
-  opacity:0;animation:fadeUp 0.9s ease 0.55s forwards;
-}
-.ps-num{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:2.5rem;line-height:0.9;color:#f7f4ed;letter-spacing:0.02em;
-}
-.ps-num span{color:#c8a254;font-size:1.4rem;}
-.ps-lab{
-  font-family:'Space Mono',monospace;
-  font-size:9px;letter-spacing:0.12em;text-transform:uppercase;
-  color:rgba(240,237,230,0.55);margin-top:6px;
-}
-.ps-div{width:0.5px;align-self:stretch;background:rgba(200,162,84,0.25);margin-bottom:2px;}
-
-.subhead{
-  font-size:1.05rem;
-  color:rgba(240,237,230,0.82);
-  max-width:420px;line-height:1.7;margin-bottom:1.9rem;
-  opacity:0;animation:fadeUp 0.9s ease 0.62s forwards;
-  font-weight:400;
+.hero-hook:hover .hook-q{color:var(--accent-ink);}
+.hook-sub{
+  display:block;font-family:'IBM Plex Mono',monospace;font-size:11.5px;
+  letter-spacing:0.04em;color:var(--accent);margin-top:0.65rem;
 }
 
-.domains{
-  display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1.4rem;
-  opacity:0;animation:fadeUp 0.9s ease 0.48s forwards;
-}
+.proof{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.proof-item{padding:2.8rem 2rem 2.8rem 0;border-right:1px solid var(--line);}
+.proof-item:not(:first-child){padding-left:2rem;}
+.proof-item:last-child{border-right:none;}
+.proof-num{font-family:'Fraunces',serif;font-weight:500;font-size:2.9rem;line-height:1;letter-spacing:-0.02em;color:var(--ink);margin-bottom:0.7rem;}
+.proof-num .u{color:var(--accent);}
+.proof-label{font-size:13.5px;color:var(--muted);line-height:1.55;}
 
-.scroll-cue{
-  position:absolute;bottom:2rem;left:2.5rem;z-index:3;
-  display:flex;align-items:center;gap:10px;
-  font-family:'Space Mono',monospace;font-size:9px;
-  letter-spacing:0.2em;text-transform:uppercase;
-  color:rgba(200,162,84,0.6);
-  opacity:0;animation:fadeUp 1s ease 1.1s forwards;
-}
-.scroll-cue .line{
-  display:inline-block;width:34px;height:0.5px;background:#c8a254;
-  animation:cueSlide 1.8s ease-in-out infinite;
-}
-@keyframes cueSlide{0%,100%{transform:scaleX(0.5);opacity:0.4;transform-origin:left;}50%{transform:scaleX(1);opacity:1;transform-origin:left;}}
-.domain-tag{
-  font-family:'Space Mono',monospace;font-size:9px;
-  letter-spacing:0.12em;text-transform:uppercase;
-  padding:6px 13px;
-  border:0.5px solid rgba(200,162,84,0.55);
-  color:#d4b06a;
-}
+.section{padding:5rem 0;border-bottom:1px solid var(--line);}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.09em;text-transform:uppercase;color:var(--faint);margin-bottom:0.4rem;}
+.section-head{font-family:'Fraunces',serif;font-weight:500;font-size:1.75rem;letter-spacing:-0.01em;color:var(--ink);margin-bottom:3rem;line-height:1.25;}
 
-.cta-row{
-  display:flex;align-items:center;gap:1.4rem;
-  opacity:0;animation:fadeUp 0.9s ease 0.8s forwards;
-}
-.btn-primary{
-  font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:600;
-  letter-spacing:0.14em;text-transform:uppercase;
-  color:#070707;background:#c8a254;border:none;
-  padding:13px 30px;cursor:pointer;text-decoration:none;
-  display:inline-block;transition:opacity 0.2s;
-}
-.btn-primary:hover{opacity:0.85;}
-.btn-ghost{
-  font-size:12px;color:rgba(240,237,230,0.6);
-  text-decoration:none;letter-spacing:0.05em;transition:color 0.2s;
-}
-.btn-ghost:hover{color:#f5f2eb;}
+.case{display:grid;grid-template-columns:180px 1fr;gap:2.5rem;padding:2.4rem 0;border-top:1px solid var(--line-soft);align-items:start;}
+.case:first-of-type{border-top:none;}
+.case-co{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent);letter-spacing:0.01em;padding-top:0.35rem;}
+.case-q{font-family:'Fraunces',serif;font-weight:500;font-size:1.5rem;line-height:1.34;letter-spacing:-0.01em;color:var(--ink);max-width:32ch;}
+.case-q .soft{color:var(--muted);display:block;font-size:1.32rem;}
+.case-q .soft:last-child{color:var(--ink);}
 
-@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+.principles{display:grid;grid-template-columns:1fr 1fr;gap:3rem 4rem;}
+.principle{display:grid;grid-template-columns:auto 1fr;gap:1.3rem;align-items:start;}
+.p-num{font-family:'Fraunces',serif;font-style:italic;font-weight:400;font-size:1.6rem;color:var(--accent);line-height:1;padding-top:0.15rem;}
+.p-text p{font-size:15.5px;line-height:1.66;color:var(--muted);margin-bottom:0.5rem;}
+.p-text p:first-child{color:var(--ink);font-weight:500;}
+.p-text p:last-child{margin-bottom:0;}
 
-/* STATS */
-.stats{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  border-top:0.5px solid rgba(255,255,255,0.08);
-  border-bottom:0.5px solid rgba(255,255,255,0.08);
-}
-.stat{padding:2.6rem 2.5rem;border-right:0.5px solid rgba(255,255,255,0.08);cursor:default;}
-.stat:last-child{border-right:none;}
-.stat-num{
-  font-family:'Bebas Neue',sans-serif;font-size:4.5rem;
-  line-height:1;color:#f7f4ed;letter-spacing:0.02em;
-  transition:color 0.3s,opacity 0.6s ease,transform 0.6s ease;
-  opacity:0;transform:translateY(16px);
-}
-.stat-num.visible{opacity:1;transform:translateY(0);}
-.stat:hover .stat-num{color:#c8a254;}
-.stat-num span{color:#c8a254;font-size:2.5rem;}
-.stat-label{
-  font-size:12px;color:rgba(240,237,230,0.6);
-  line-height:1.6;margin-top:0.6rem;
-}
+.where{padding:5rem 0;border-bottom:1px solid var(--line);}
+.where-lead{font-size:1.05rem;color:var(--muted);margin-bottom:1.2rem;line-height:1.7;max-width:64ch;}
+.where-thesis{font-family:'Fraunces',serif;font-weight:400;font-size:1.5rem;line-height:1.45;letter-spacing:-0.008em;color:var(--ink);max-width:34ch;}
 
-/* HOW I THINK — now a real container */
-.think-wrap{padding:4rem 2.5rem;border-bottom:0.5px solid rgba(255,255,255,0.06);}
-.think{
-  border:0.5px solid rgba(200,162,84,0.18);
-  background:rgba(200,162,84,0.03);
-  padding:2.5rem 2.8rem;
-  max-width:820px;
-}
-.think-label{
-  font-family:'Space Mono',monospace;font-size:11px;
-  letter-spacing:0.2em;text-transform:uppercase;
-  color:#d4b06a;margin-bottom:1.4rem;
-  display:flex;align-items:center;gap:14px;
-}
-.think-label::after{content:'';flex:1;height:0.5px;background:rgba(200,162,84,0.2);}
-.think-text{
-  font-size:1.22rem;font-weight:400;
-  color:rgba(240,237,230,0.85);
-  line-height:1.8;letter-spacing:-0.005em;
-}
-.think-text strong{font-weight:600;color:#f7f4ed;}
+.contact{padding:5rem 0 5.5rem;}
+.contact-lead{font-size:1.15rem;color:var(--ink);max-width:52ch;line-height:1.6;margin-bottom:1.4rem;}
+.contact-tags{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:1.4rem;}
+.contact-tags span{color:var(--ink);}
+.contact-avail{font-size:14.5px;color:var(--muted);margin-bottom:1.2rem;}
+.contact-hook{font-family:'Fraunces',serif;font-style:italic;font-weight:400;font-size:1.32rem;line-height:1.45;color:var(--accent-ink);max-width:40ch;margin-bottom:2.4rem;letter-spacing:-0.005em;}
+.actions{display:flex;gap:1rem;flex-wrap:wrap;align-items:center;}
+.btn-primary{font-size:14px;font-weight:500;color:var(--paper);background:var(--accent);padding:12px 26px;border-radius:6px;text-decoration:none;transition:background .2s ease;}
+.btn-primary:hover{background:var(--accent-ink);}
+.btn-line{font-size:14px;color:var(--ink);text-decoration:none;padding:12px 22px;border:1px solid var(--line);border-radius:6px;transition:border-color .2s ease;}
+.btn-line:hover{border-color:var(--accent);}
+.email{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--muted);margin-top:1.7rem;display:flex;align-items:center;gap:2px;flex-wrap:wrap;}
+.email button{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent);background:none;border:none;cursor:pointer;margin-left:10px;letter-spacing:0.04em;padding:2px 4px;border-radius:3px;transition:background .2s ease;}
+.email button:hover{background:#2B3A5510;}
 
-/* WORK */
-.work{padding:4rem 2.5rem;}
-.section-label{
-  font-family:'Space Mono',monospace;font-size:11px;
-  letter-spacing:0.2em;text-transform:uppercase;
-  color:#d4b06a;margin-bottom:2.5rem;
-  display:flex;align-items:center;gap:16px;
-}
-.section-label::after{content:'';flex:1;height:0.5px;background:rgba(200,162,84,0.2);}
+footer{border-top:1px solid var(--line);padding:1.7rem 0;}
+.footer-inner{max-width:1000px;margin:0 auto;padding:0 2.5rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:0.8rem;}
+.footer-inner span{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--faint);}
 
-.case{
-  display:grid;grid-template-columns:1.4fr 0.6fr;
-  border:0.5px solid rgba(255,255,255,0.08);
-  margin-bottom:1px;transition:all 0.3s;
-  background:rgba(255,255,255,0.01);
-}
-.case:hover{border-color:rgba(200,162,84,0.28);background:rgba(200,162,84,0.02);}
-.case-left{padding:2.2rem 2.5rem;border-right:0.5px solid rgba(255,255,255,0.08);}
-.case-right{padding:2.2rem 2.5rem;display:flex;flex-direction:column;justify-content:center;gap:1.6rem;}
-.case-co{
-  font-family:'Space Mono',monospace;font-size:10px;
-  letter-spacing:0.16em;text-transform:uppercase;
-  color:#d4b06a;margin-bottom:0.7rem;
-}
-.case-title{font-size:1.05rem;font-weight:600;color:#f7f4ed;line-height:1.4;margin-bottom:0.7rem;}
-.case-desc{font-size:13px;color:rgba(240,237,230,0.72);line-height:1.7;}
-.metric-val{
-  font-family:'Bebas Neue',sans-serif;font-size:2.9rem;
-  color:#f7f4ed;line-height:1;letter-spacing:0.02em;
-}
-.metric-val em{font-style:normal;color:#c8a254;font-size:1.7rem;}
-.metric-label{font-size:11px;color:rgba(240,237,230,0.6);margin-top:6px;line-height:1.4;}
+.reveal{opacity:0;transform:translateY(12px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important;transition:none!important;}html{scroll-behavior:auto;}}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;}
 
-/* AVAIL */
-.avail{padding:0 2.5rem 4rem;}
-.avail-box{
-  border:0.5px solid rgba(200,162,84,0.18);
-  padding:2.5rem;display:flex;justify-content:space-between;align-items:center;gap:2rem;
-  background:rgba(200,162,84,0.025);flex-wrap:wrap;
-}
-.avail-status{display:flex;align-items:center;gap:10px;margin-bottom:0.6rem;}
-.dot{width:8px;height:8px;border-radius:50%;background:#4ade80;animation:breathe 2.5s ease-in-out infinite;}
-@keyframes breathe{0%,100%{opacity:1;}50%{opacity:0.3;}}
-.avail-live{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#5be894;}
-.avail-detail{font-size:13px;color:rgba(240,237,230,0.7);line-height:1.6;}
-.avail-target{font-size:12px;color:#d4b06a;line-height:1.6;margin-top:0.5rem;font-family:'Space Mono',monospace;letter-spacing:0.02em;}
-.avail-links{display:flex;gap:0.8rem;align-items:center;flex-wrap:wrap;}
-.email-copy{
-  display:flex;align-items:center;gap:8px;
-  border:0.5px solid rgba(200,162,84,0.3);
-  padding:10px 16px;cursor:pointer;transition:all 0.2s;background:transparent;
-}
-.email-copy:hover{border-color:rgba(200,162,84,0.6);}
-.email-copy span{font-size:12px;color:#f0ede6;font-family:'Space Mono',monospace;letter-spacing:0.02em;}
-.email-copy .copy-ico{font-size:11px;color:#d4b06a;}
-.link-btn{
-  font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;
-  color:rgba(240,237,230,0.6);text-decoration:none;
-  border:0.5px solid rgba(255,255,255,0.12);
-  padding:11px 22px;transition:all 0.2s;
-  background:transparent;font-family:'Space Grotesk',sans-serif;
-}
-.link-btn:hover{color:#f5f2eb;border-color:rgba(200,162,84,0.4);}
-
-footer{
-  border-top:0.5px solid rgba(255,255,255,0.06);
-  padding:1.5rem 2.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
-}
-.footer-name{font-family:'Space Mono',monospace;font-size:10px;color:rgba(240,237,230,0.35);letter-spacing:0.1em;}
-.footer-built{font-size:10px;color:rgba(240,237,230,0.3);}
-
-@media(max-width:860px){
-  .hero{grid-template-columns:1fr;}
-  .hero-right{height:70vw;position:absolute;top:60px;right:0;width:58%;}
-  .hero-left{padding-top:5rem;padding-right:1.5rem;}
-  .proofstats{gap:1rem;}
-  .ps-num{font-size:2rem;}
-  .ps-div{display:none;}
-  .stats{grid-template-columns:1fr 1fr;}
-  .stat:nth-child(2){border-right:none;}
-  .stat:nth-child(3){border-top:0.5px solid rgba(255,255,255,0.08);grid-column:span 2;}
-  .case{grid-template-columns:1fr;}
-  .case-left{border-right:none;border-bottom:0.5px solid rgba(255,255,255,0.08);}
-  .avail-box{flex-direction:column;align-items:flex-start;}
-  nav{padding:1rem 1.5rem;}
-  .nav-right{gap:1rem;}
-  .nav-right a:not(.nav-cv){display:none;}
-  .headline{font-size:clamp(3.2rem,11vw,4.5rem);}
+@media(max-width:820px){
+  .wrap,.nav-inner,.footer-inner{padding-left:1.5rem;padding-right:1.5rem;}
+  .nav-links{gap:1.1rem;}
+  .nav-links a:not(.nav-cv):not(.nav-li){display:none;}
+  .hero{padding:4.5rem 0 3.5rem;}
+  .proof{grid-template-columns:1fr;}
+  .proof-item{border-right:none;border-bottom:1px solid var(--line);padding:2rem 0!important;}
+  .proof-item:last-child{border-bottom:none;}
+  .case{grid-template-columns:1fr;gap:0.7rem;}
+  .case-co{padding-top:0;}
+  .principles{grid-template-columns:1fr;gap:2.4rem;}
+  .section,.where,.contact{padding:3.5rem 0;}
 }
 </style>
 </head>
 <body>
-<canvas id="c"></canvas>
-<div class="site">
 
-  <nav>
-    <span class="nav-logo">CN_</span>
-    <div class="nav-right">
+<nav>
+  <div class="nav-inner">
+    <span class="nav-name">Chayan Narang</span>
+    <div class="nav-links">
       <a href="#work">Work</a>
+      <a href="#operate">How I Operate</a>
       <a href="#contact">Contact</a>
+      <a href="https://www.linkedin.com/in/chayan-narang/" target="_blank" rel="noopener" class="nav-li">LinkedIn</a>
       <a href="https://raw.githubusercontent.com/chayannarang/Portfolio/main/Chayan_Narang_CV_Master.docx" class="nav-cv" download>Download CV</a>
     </div>
-  </nav>
-
-  <section class="hero">
-    <div class="hero-left">
-      <div class="eyebrow">Senior PM · SPJIMR MBA · 9 Years · Immediate Joiner</div>
-      <h1 class="headline">
-        I DON'T<br>MANAGE<br>PRODUCTS.<br>I FIX THE<br>ONES THAT<br>ARE <span class="bleeding">BLEEDING.</span>
-      </h1>
-      <div class="domains">
-        <span class="domain-tag">Enterprise B2B SaaS</span>
-        <span class="domain-tag">Cloud Migration</span>
-        <span class="domain-tag">Digital Transformation</span>
-        <span class="domain-tag">AI-Native PM</span>
-      </div>
-      <div class="proofstats">
-        <div class="ps"><div class="ps-num">$1.5<span>M</span></div><div class="ps-lab">ARR protected</div></div>
-        <div class="ps-div"></div>
-        <div class="ps"><div class="ps-num">60<span>+</span></div><div class="ps-lab">Tenant cloud migration</div></div>
-        <div class="ps-div"></div>
-        <div class="ps"><div class="ps-num">50<span>–60%</span></div><div class="ps-lab">NPS recovery</div></div>
-      </div>
-      <p class="subhead">Nine years turning platform nightmares into working products across BFSI, Automotive, and Enterprise SaaS.</p>
-      <div class="cta-row">
-        <a href="#work" class="btn-primary">View work ↓</a>
-        <a href="https://raw.githubusercontent.com/chayannarang/Portfolio/main/Chayan_Narang_CV_Master.docx" download class="btn-ghost">Download CV ↓</a>
-      </div>
-    </div>
-    <div class="hero-right">
-      <img class="portrait" src="https://raw.githubusercontent.com/chayannarang/Portfolio/main/Gemini_Generated_Image_hl4gmehl4gmehl4g.png" alt="Chayan Narang"/>
-      <div class="glow-orb"></div>
-      <div class="fade-left"></div>
-      <div class="fade-top"></div>
-      <div class="fade-bottom"></div>
-    </div>
-    <a href="#work" class="scroll-cue"><span class="line"></span>Scroll — selected work</a>
-  </section>
-
-  <div class="stats">
-    <div class="stat">
-      <div class="stat-num">$1.5<span>M</span></div>
-      <div class="stat-label">ARR protected — revenue-weighted prioritization, Upland Software</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">60<span>+</span></div>
-      <div class="stat-label">Tenant sites migrated to AEM Cloud — global automotive platform</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">50<span>–60%</span></div>
-      <div class="stat-label">NPS recovery — Fidelity UK, data-led production stabilization</div>
-    </div>
   </div>
+</nav>
 
-  <div class="think-wrap">
-    <div class="think">
-      <div class="think-label">How I think</div>
-      <p class="think-text">
-        <strong>Most product problems are sequencing problems, not idea problems.</strong> The bottleneck is almost never what to build — it's knowing what to stop building, what to defer, and what to fix before it becomes a $1.5M churn conversation. I work best at the intersection of messy architecture, resistant stakeholders, and a hard deadline.
-      </p>
-    </div>
-  </div>
+<div class="wrap">
 
-  <section class="work" id="work">
-    <div class="section-label">Selected work</div>
-    <div class="case">
-      <div class="case-left">
-        <div class="case-co">Publicis Sapient · 2025–2026</div>
-        <div class="case-title">AEM Cloud migration — 60+ tenant global automotive platform</div>
-        <div class="case-desc">Defined target-state landing-zone and mono-repo CI/CD governance. Aligned resistant BU architects onto a controlled-autonomy model under a hard March deadline.</div>
-      </div>
-      <div class="case-right">
-        <div><div class="metric-val">60<em>–70%</em></div><div class="metric-label">Manual migration effort cut</div></div>
-        <div><div class="metric-val">80<em>%</em></div><div class="metric-label">Page-load improvement vs legacy CMS</div></div>
-      </div>
+  <header class="hero">
+    <div class="status"><span class="dot"></span>Available now — India · Dubai/UAE · Singapore</div>
+    <h1>The product decisions that keep enterprise transformation moving.</h1>
+    <div class="hero-body">
+      <p>I'm a Senior Product Manager with ~9 years across enterprise SaaS, digital transformation, BFSI and automotive.</p>
+      <p>Transformation programs rarely stall because engineering can't build.</p>
+      <p>They stall because difficult product decisions remain unresolved:</p>
+      <ul class="hero-q">
+        <li>What should be standardized?</li>
+        <li>What should remain flexible?</li>
+        <li>Which local optimizations are worth the long-term operational cost?</li>
+      </ul>
+      <p class="hero-close">That's the work I'm brought in to do.</p>
     </div>
-    <div class="case">
-      <div class="case-left">
-        <div class="case-co">Upland Software · 2022–2024</div>
-        <div class="case-title">Snowflake consolidation — $1.5M ARR pulled back from churn</div>
-        <div class="case-desc">Revenue-weighted prioritization across 50+ backlog items. Phased SQL-to-Snowflake migration. Doubled reporting adoption through standardized Qlik dashboards.</div>
-      </div>
-      <div class="case-right">
-        <div><div class="metric-val">30<em>→60%</em></div><div class="metric-label">Platform adoption uplift</div></div>
-        <div><div class="metric-val">80<em>%</em></div><div class="metric-label">Latency cut — 3–5s to under 1s</div></div>
-      </div>
+    <div class="meta">
+      <span>Enterprise Platform Strategy</span>
+      <span>Cloud Migration</span>
+      <span>Digital Transformation</span>
+      <span>SPJIMR MBA</span>
     </div>
-    <div class="case">
-      <div class="case-left">
-        <div class="case-co">Fidelity International · 2020–2021</div>
-        <div class="case-title">NPS recovery — UK Personal Investing D2C platform</div>
-        <div class="case-desc">Triangulated Medallia, Decibel behavioral analytics, and API failure logs to surface recurring defects. Escalated into roadmap. Recognized by Head of UK Personal Investing.</div>
+    <div class="hero-actions">
+      <a href="https://www.linkedin.com/in/chayan-narang/" target="_blank" rel="noopener" class="btn-primary">Connect on LinkedIn</a>
+      <a href="https://raw.githubusercontent.com/chayannarang/Portfolio/main/Chayan_Narang_CV_Master.docx" download class="btn-line">Download CV</a>
+    </div>
+    <a href="#work" class="hero-hook">
+      <span class="hook-q">&ldquo;When a $1.5M customer is signalling churn, what do you build first?&rdquo;</span>
+      <span class="hook-sub">One of three decisions below ↓</span>
+    </a>
+  </header>
+
+  <section class="proof">
+    <div class="proof-item">
+      <div class="proof-num">$1.5<span class="u">M</span></div>
+      <div class="proof-label">ARR protected through revenue-weighted roadmap prioritization.</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-num">60<span class="u">+</span></div>
+      <div class="proof-label">Enterprise websites brought onto one platform governance model.</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-num">50–60<span class="u">%</span></div>
+      <div class="proof-label">Relative NPS recovery by triangulating customer, behavioural and production data.</div>
+    </div>
+  </section>
+
+  <section class="section" id="work">
+    <div class="eyebrow">Selected work</div>
+    <h2 class="section-head">The decisions behind enterprise transformation.</h2>
+    <div class="case reveal">
+      <div class="case-co">Publicis Sapient</div>
+      <div class="case-q">How do you migrate 60+ enterprise websites without creating governance chaos?</div>
+    </div>
+    <div class="case reveal">
+      <div class="case-co">Upland Software</div>
+      <div class="case-q">When a $1.5M customer is signalling churn, what do you build first?</div>
+    </div>
+    <div class="case reveal">
+      <div class="case-co">Fidelity International</div>
+      <div class="case-q"><span class="soft">Customer sentiment is falling.</span><span class="soft">Everyone has a theory.</span>How do you find the real problem?</div>
+    </div>
+  </section>
+
+  <section class="section" id="operate">
+    <div class="eyebrow">How I operate</div>
+    <div class="principles" style="margin-top:1rem;">
+      <div class="principle reveal">
+        <div class="p-num">1</div>
+        <div class="p-text">
+          <p>Most product problems are sequencing problems.</p>
+          <p>The hardest decision is rarely what to build.</p>
+          <p>It's what to stop, what to defer and what to solve first.</p>
+        </div>
       </div>
-      <div class="case-right">
-        <div><div class="metric-val">50<em>–60%</em></div><div class="metric-label">NPS relative improvement</div></div>
-        <div><div class="metric-val">0</div><div class="metric-label">Cash-integrity incidents — contained pre-production</div></div>
+      <div class="principle reveal">
+        <div class="p-num">2</div>
+        <div class="p-text">
+          <p>Enterprise platforms scale on shared rules, not removed autonomy.</p>
+          <p>The objective isn't reducing autonomy.</p>
+          <p>It's reducing unnecessary complexity.</p>
+        </div>
+      </div>
+      <div class="principle reveal">
+        <div class="p-num">3</div>
+        <div class="p-text">
+          <p>Every local optimization creates global complexity.</p>
+          <p>Good product judgement is deciding where standardization creates more value than flexibility.</p>
+        </div>
+      </div>
+      <div class="principle reveal">
+        <div class="p-num">4</div>
+        <div class="p-text">
+          <p>Evidence beats opinion.</p>
+          <p>Customer feedback, behavioural analytics and production telemetry each tell part of the story.</p>
+          <p>Together they show you which problem is actually worth solving.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="avail" id="contact">
-    <div class="avail-box">
-      <div>
-        <div class="avail-status"><span class="dot"></span><span class="avail-live">Available now</span></div>
-        <div class="avail-detail">Zero notice period · India (Gurugram) · Dubai / UAE · Singapore · Contract or full-time</div>
-        <div class="avail-target">Targeting Senior / Principal PM roles in Enterprise B2B SaaS &amp; Digital Transformation.</div>
-      </div>
-      <div class="avail-links">
-        <button class="email-copy" id="emailCopy">
-          <span id="emailText">pgpm2021.chayan@spjimr.org</span>
-          <span class="copy-ico" id="copyIco">COPY</span>
-        </button>
-        <a href="https://www.linkedin.com/in/chayan-narang/" target="_blank" class="link-btn">LinkedIn ↗</a>
-      </div>
-    </div>
+  <section class="where">
+    <div class="eyebrow">Where I've operated</div>
+    <p class="where-lead" style="margin-top:0.4rem;">Across SaaS, BFSI and Automotive, my role has remained consistent:</p>
+    <p class="where-thesis">Taking ambiguous enterprise platform problems and turning them into clear product decisions that engineering teams can execute and businesses can scale.</p>
   </section>
 
-  <footer>
-    <span class="footer-name">CHAYAN NARANG · SPJIMR MBA · CSPO · AZURE AZ-900</span>
-    <span class="footer-built">Built with Claude + Gemini AI</span>
-  </footer>
+  <section class="contact" id="contact">
+    <div class="eyebrow">Contact</div>
+    <p class="contact-lead" style="margin-top:0.6rem;">Open to Senior and Principal Product Management opportunities across India, Dubai/UAE and Singapore.</p>
+    <div class="contact-tags"><span>Enterprise SaaS.</span> <span>Digital Transformation.</span> <span>Platform Strategy.</span></div>
+    <p class="contact-avail">Available immediately.</p>
+    <p class="contact-hook">If a platform decision is stuck on someone's desk, that's the conversation I want.</p>
+    <div class="actions">
+      <a href="https://www.linkedin.com/in/chayan-narang/" target="_blank" rel="noopener" class="btn-primary">Connect on LinkedIn</a>
+      <a href="https://raw.githubusercontent.com/chayannarang/Portfolio/main/Chayan_Narang_CV_Master.docx" download class="btn-line">Download CV</a>
+    </div>
+    <div class="email">pgpm2021.chayan@spjimr.org<button id="copyBtn" aria-label="Copy email address">copy</button></div>
+  </section>
+
 </div>
 
+<footer>
+  <div class="footer-inner">
+    <span>Chayan Narang · SPJIMR MBA · CSPO · Azure AZ-900</span>
+    <span>Senior Product Manager</span>
+  </div>
+</footer>
+
 <script>
-const canvas=document.getElementById('c');
-const ctx=canvas.getContext('2d');
-let W,H,particles=[],gridTargets=[],prog=0,going=true;
-const N=110;
-function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;buildGrid();}
-function buildGrid(){
-  const cols=11,rows=8,gw=W*.7,gh=H*.66,ox=W*.15,oy=H*.17;
-  gridTargets=[];let i=0;
-  for(let r=0;r<rows&&i<N;r++)
-    for(let c=0;c<cols&&i<N;c++,i++)
-      gridTargets.push({x:ox+c/(cols-1)*gw,y:oy+r/(rows-1)*gh});
-}
-function init(){
-  particles=[];
-  for(let i=0;i<N;i++)
-    particles.push({x:Math.random()*1400,y:Math.random()*800,vx:(Math.random()-.5)*.5,vy:(Math.random()-.5)*.5,r:Math.random()*1.3+.3,gold:Math.random()>.7,a:Math.random()*.25+.06,ph:Math.random()*Math.PI*2});
-}
-function ease(t){return t<.5?2*t*t:-1+(4-2*t)*t;}
-let lt=0;
-function draw(ts){
-  requestAnimationFrame(draw);
-  const dt=Math.min(ts-lt,32);lt=ts;
-  ctx.clearRect(0,0,W,H);
-  if(going){prog+=dt*.00022;if(prog>=1){prog=1;going=false;}}
-  const e=ease(Math.min(prog,1));
-  particles.forEach((p,i)=>{
-    const t=gridTargets[i]||{x:p.x,y:p.y};
-    const tx=p.x+(t.x-p.x)*e,ty=p.y+(t.y-p.y)*e;
-    if(!going){p.x+=p.vx*.1;p.y+=p.vy*.1;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;}
-    const pulse=.65+.35*Math.sin(ts*.0007+p.ph);
-    ctx.beginPath();ctx.arc(tx,ty,p.r,0,Math.PI*2);
-    ctx.fillStyle=p.gold?`rgba(200,162,84,${p.a*pulse})`:`rgba(240,237,230,${p.a*pulse*.55})`;
-    ctx.fill();
-  });
-  if(e>.28){
-    const la=(e-.28)/.72*.035;
-    ctx.strokeStyle=`rgba(240,237,230,${la})`;ctx.lineWidth=.35;
-    const cols=11,rows=8,gw=W*.7,gh=H*.66,ox=W*.15,oy=H*.17;
-    for(let r=0;r<rows;r++){ctx.beginPath();for(let c=0;c<cols;c++){const x=ox+c/(cols-1)*gw,y=oy+r/(rows-1)*gh;c===0?ctx.moveTo(x,y):ctx.lineTo(x,y);}ctx.stroke();}
-    for(let c=0;c<cols;c++){ctx.beginPath();for(let r=0;r<rows;r++){const x=ox+c/(cols-1)*gw,y=oy+r/(rows-1)*gh;r===0?ctx.moveTo(x,y):ctx.lineTo(x,y);}ctx.stroke();}
-  }
-}
-const statNums=document.querySelectorAll('.stat-num');
-const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.3});
-statNums.forEach(s=>obs.observe(s));
-
-// email copy
-const ec=document.getElementById('emailCopy');
-if(ec){ec.addEventListener('click',()=>{
-  navigator.clipboard.writeText('pgpm2021.chayan@spjimr.org').then(()=>{
-    document.getElementById('copyIco').textContent='COPIED';
-    setTimeout(()=>{document.getElementById('copyIco').textContent='COPY';},1800);
-  });
-});}
-
-window.addEventListener('resize',resize);
-resize();init();requestAnimationFrame(draw);
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.16});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+const cb=document.getElementById('copyBtn');
+cb.addEventListener('click',()=>{navigator.clipboard.writeText('pgpm2021.chayan@spjimr.org').then(()=>{cb.textContent='copied';setTimeout(()=>cb.textContent='copy',1600);}).catch(()=>{cb.textContent='select & copy';setTimeout(()=>cb.textContent='copy',1600);});});
 </script>
 </body>
 </html>
