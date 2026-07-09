@@ -49,8 +49,19 @@ nav{position:sticky;top:0;z-index:50;background:rgba(251,251,249,0.82);backdrop-
 .hero-actions .btn-primary{font-size:14.5px;padding:13px 28px;}
 .hero-actions .btn-line{font-size:14.5px;padding:13px 24px;}
 
+.proto-cta{
+  display:block;text-decoration:none;margin-top:1.6rem;padding:1.15rem 1.4rem;
+  background:var(--panel);border:1px solid #2B3A5530;border-radius:8px;
+  max-width:56ch;transition:all .2s ease;
+}
+.proto-cta:hover{border-color:var(--accent);background:#2B3A5512;}
+.proto-label{display:block;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--accent);margin-bottom:7px;}
+.proto-q{display:flex;align-items:center;gap:8px;font-size:15px;color:var(--ink);font-weight:500;line-height:1.5;}
+.proto-arrow{color:var(--accent);transition:transform .2s ease;display:inline-block;}
+.proto-cta:hover .proto-arrow{transform:translateX(4px);}
+
 .hero-hook{
-  display:block;text-decoration:none;margin-top:3.2rem;padding-top:1.8rem;
+  display:block;text-decoration:none;margin-top:2.2rem;padding-top:1.8rem;
   border-top:1px dashed var(--line);max-width:56ch;
 }
 .hook-q{
@@ -178,6 +189,10 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
       <a href="https://www.linkedin.com/in/chayan-narang/" target="_blank" rel="noopener" class="btn-primary">Connect on LinkedIn</a>
       <a href="https://raw.githubusercontent.com/chayannarang/Portfolio/main/Chayan_Narang_CV_Master.docx" download class="btn-line">Download CV</a>
     </div>
+    <a href="case-study.html" class="proto-cta">
+      <span class="proto-label">AI Product Management — Live Prototype</span>
+      <span class="proto-q">Should a PM still retype every finished design into a ticket by hand? <span class="proto-arrow">→</span></span>
+    </a>
     <a href="#work" class="hero-hook">
       <span class="hook-q">&ldquo;When a $1.5M customer is signalling churn, what do you build first?&rdquo;</span>
       <span class="hook-sub">One of three decisions below ↓</span>
@@ -214,12 +229,6 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
       <div class="case-co">Fidelity International</div>
       <div class="case-q"><span class="soft">Customer sentiment is falling.</span><span class="soft">Everyone has a theory.</span>How do you find the real problem?</div>
     </div>
-    <a href="case-study.html" class="case-link">
-      <div class="case reveal">
-        <div class="case-co">Personal Project<span class="case-sub">AI Product Management</span></div>
-        <div class="case-q">Should a PM still retype every finished design into a ticket by hand?<span class="hook-sub case-proto">→ View working prototype</span></div>
-      </div>
-    </a>
   </section>
 
   <section class="section" id="operate">
