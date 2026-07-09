@@ -82,6 +82,10 @@ nav{position:sticky;top:0;z-index:50;background:rgba(251,251,249,0.82);backdrop-
 .case-q{font-family:'Fraunces',serif;font-weight:500;font-size:1.5rem;line-height:1.34;letter-spacing:-0.01em;color:var(--ink);max-width:32ch;}
 .case-q .soft{color:var(--muted);display:block;font-size:1.32rem;}
 .case-q .soft:last-child{color:var(--ink);}
+.case-link{text-decoration:none;display:block;transition:opacity .2s ease;}
+.case-link:hover{opacity:0.75;}
+.case-sub{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.07em;text-transform:uppercase;color:var(--faint);display:block;margin-top:4px;}
+.case-proto{display:block;margin-top:0.6rem;}
 
 .principles{display:grid;grid-template-columns:1fr 1fr;gap:3rem 4rem;}
 .principle{display:grid;grid-template-columns:auto 1fr;gap:1.3rem;align-items:start;}
@@ -210,6 +214,12 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
       <div class="case-co">Fidelity International</div>
       <div class="case-q"><span class="soft">Customer sentiment is falling.</span><span class="soft">Everyone has a theory.</span>How do you find the real problem?</div>
     </div>
+    <a href="case-study.html" class="case-link">
+      <div class="case reveal">
+        <div class="case-co">Personal Project<span class="case-sub">AI Product Management</span></div>
+        <div class="case-q">Should a PM still retype every finished design into a ticket by hand?<span class="hook-sub case-proto">→ View working prototype</span></div>
+      </div>
+    </a>
   </section>
 
   <section class="section" id="operate">
