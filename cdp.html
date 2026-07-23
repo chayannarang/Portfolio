@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Warehouse-Native Mini-CDP — Snowflake — Chayan Narang</title>
+<meta name="description" content="A 5-layer customer data platform built on real e-commerce order data (96K+ customers) on Snowflake — identity resolution, segmentation and activation governance, with the product judgment behind each layer.">
+<meta property="og:title" content="Warehouse-Native Mini-CDP — Snowflake">
+<meta property="og:description" content="A 5-layer customer data platform built on real e-commerce order data (96K+ customers) — because no existing public project combines Olist + Snowflake + identity resolution.">
+<meta property="og:image" content="assets/d03_L4_category_breakdown_repeat_vs_single.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FBFBF9;--ink:#1A1A17;--muted:#63635C;--faint:#9A9A90;
+  --line:#E6E5DF;--line-soft:#EFEEE9;--accent:#2B3A55;--accent-ink:#22304A;--panel:#F5F4F0;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+body{background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+::selection{background:#2B3A5522;}
+.wrap{max-width:1000px;margin:0 auto;padding:0 2.5rem;}
+
+nav{position:sticky;top:0;z-index:50;background:rgba(251,251,249,0.82);backdrop-filter:blur(14px) saturate(1.4);border-bottom:1px solid var(--line);}
+.nav-inner{max-width:1000px;margin:0 auto;padding:1.05rem 2.5rem;display:flex;justify-content:space-between;align-items:center;}
+.nav-name{font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:0.01em;color:var(--ink);font-weight:500;}
+.nav-links{display:flex;gap:1.7rem;align-items:center;}
+.nav-links a{font-size:13.5px;color:var(--muted);text-decoration:none;transition:color .2s ease;}
+.nav-links a:hover{color:var(--ink);}
+.nav-cv{font-size:12.5px;font-weight:500;color:var(--paper)!important;background:var(--accent);padding:7px 15px;border-radius:5px;transition:background .2s ease;}
+.nav-cv:hover{background:var(--accent-ink);}
+.nav-li{font-size:12.5px;font-weight:500;color:var(--accent)!important;background:var(--panel);border:1px solid #2B3A5530;padding:6px 14px;border-radius:5px;transition:all .2s ease;}
+.nav-li:hover{background:#2B3A5512;border-color:#2B3A5555;}
+
+/* Mini-nav: sits under the main nav in normal flow, sticks under it on scroll */
+.mini-nav{position:sticky;top:0;z-index:40;background:rgba(251,251,249,0.92);backdrop-filter:blur(12px) saturate(1.3);border-bottom:1px solid var(--line);}
+.mini-nav-inner{max-width:1000px;margin:0 auto;padding:0.85rem 2.5rem;display:flex;gap:1.7rem;align-items:center;}
+.mini-nav a{font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:0.01em;color:var(--muted);text-decoration:none;white-space:nowrap;padding-bottom:3px;border-bottom:2px solid transparent;transition:color .2s ease,border-color .2s ease;}
+.mini-nav a:hover{color:var(--ink);}
+.mini-nav a.active{color:var(--accent);border-bottom-color:var(--accent);}
+@media(max-width:640px){
+  .mini-nav-inner{overflow-x:auto;flex-wrap:nowrap;padding-left:1.5rem;padding-right:1.5rem;-webkit-overflow-scrolling:touch;scrollbar-width:thin;}
+}
+
+.hero{padding:6rem 0 3.5rem;}
+.hero h1{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:clamp(2.2rem,4.6vw,3.4rem);line-height:1.14;letter-spacing:-0.018em;max-width:22ch;margin-bottom:1.6rem;color:var(--ink);}
+.tag-row{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:1.8rem;}
+.tag{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.01em;color:var(--accent);background:var(--panel);border:1px solid #2B3A5530;padding:6px 13px;border-radius:999px;}
+.skim-hook{font-size:1.12rem;line-height:1.72;color:var(--muted);max-width:66ch;}
+.skim-hook strong{color:var(--ink);font-weight:500;}
+
+.section{padding:4.5rem 0;border-bottom:1px solid var(--line);}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.09em;text-transform:uppercase;color:var(--faint);margin-bottom:0.4rem;}
+.section-head{font-family:'Fraunces',serif;font-weight:500;font-size:1.6rem;letter-spacing:-0.01em;color:var(--ink);margin-bottom:2.2rem;line-height:1.28;max-width:34ch;}
+
+.beat{margin:1.6rem 0;padding-left:1.1rem;border-left:3px solid var(--line);}
+.beat.decision{border-left-color:var(--accent);}
+.beat-label{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;}
+.beat p{font-size:15.5px;line-height:1.68;color:var(--ink);max-width:66ch;margin-bottom:0.6rem;}
+.beat p:last-child{margin-bottom:0;}
+
+.stat{margin:2rem 0;}
+.stat-num{font-family:'Fraunces',serif;font-weight:500;font-size:2.1rem;line-height:1.25;letter-spacing:-0.015em;color:var(--ink);max-width:60ch;}
+.stat-num .u{color:var(--accent);}
+
+/* Screenshot card — same panel/border/radius language as .proto-cta / .proof-item */
+.shot-frame{background:var(--panel);border:1px solid #2B3A5530;border-radius:8px;padding:0.9rem;margin:1.6rem 0;}
+.shot-frame + .shot-frame{margin-top:1.1rem;}
+.shot-frame img{display:block;width:100%;border-radius:5px;border:1px solid var(--line);}
+.shot-frame .cap{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);margin-top:0.7rem;padding-top:0.15rem;}
+
+.beat.why p{color:var(--muted);}
+.beat.why p.caveat{font-size:13.5px;font-style:italic;color:var(--faint);margin-top:0.9rem;}
+
+.close-wrap{padding:4.5rem 0 0;}
+.close-line{font-family:'Fraunces',serif;font-style:italic;font-weight:400;font-size:1.32rem;line-height:1.5;color:var(--accent-ink);max-width:44ch;margin-bottom:2.2rem;letter-spacing:-0.005em;}
+.contact{padding:0 0 5.5rem;}
+.actions{display:flex;gap:1rem;flex-wrap:wrap;align-items:center;}
+.btn-primary{font-size:14px;font-weight:500;color:var(--paper);background:var(--accent);padding:12px 26px;border-radius:6px;text-decoration:none;transition:background .2s ease;}
+.btn-primary:hover{background:var(--accent-ink);}
+.btn-line{font-size:14px;color:var(--ink);text-decoration:none;padding:12px 22px;border:1px solid var(--line);border-radius:6px;transition:border-color .2s ease;}
+.btn-line:hover{border-color:var(--accent);}
+
+footer{border-top:1px solid var(--line);padding:1.7rem 0;}
+.footer-inner{max-width:1000px;margin:0 auto;padding:0 2.5rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:0.8rem;}
+.footer-inner span{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--faint);}
+
+.reveal{opacity:0;transform:translateY(12px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important;transition:none!important;}html{scroll-behavior:auto;}}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;}
+
+@media(max-width:820px){
+  .wrap,.nav-inner,.footer-inner{padding-left:1.5rem;padding-right:1.5rem;}
+  .nav-links{gap:0.9rem;}
+  .hero{padding:3.5rem 0 2.5rem;}
+  .section{padding:3.2rem 0;}
+}
+@media(max-width:480px){
+  .nav-links a:not(.nav-cv):not(.nav-li){font-size:12.5px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <span class="nav-name">Chayan Narang</span>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="https://www.linkedin.com/in/chayan-narang/" target="_blank" rel="noopener" class="nav-li">LinkedIn</a>
+      <a href="https://raw.githubusercontent.com/chayannarang/Portfolio/main/Chayan_Narang_CV_Master.docx" class="nav-cv" download>Download CV</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <header class="hero reveal">
+    <h1>Warehouse-Native Mini-CDP — Snowflake.</h1>
+    <div class="tag-row">
+      <span class="tag">Snowflake</span>
+      <span class="tag">SQL</span>
+      <span class="tag">Customer Data Platform</span>
+      <span class="tag">Identity Resolution</span>
+      <span class="tag">Segmentation</span>
+      <span class="tag">Data Modeling</span>
+    </div>
+    <p class="skim-hook">A 5-layer customer data platform built on real e-commerce order data (96K+ customers) — because no existing public project combines Olist + Snowflake + identity resolution. Built to demonstrate the same judgment behind enterprise data platform decisions: what to standardize, what to leave flexible, and what a finding actually means for the business.</p>
+  </header>
+</div>
+
+<nav class="mini-nav" id="miniNav">
+  <div class="mini-nav-inner">
+    <a href="#ingestion" data-target="ingestion">Ingestion</a>
+    <a href="#storage" data-target="storage">Storage</a>
+    <a href="#identity" data-target="identity">Identity</a>
+    <a href="#segmentation" data-target="segmentation">Segmentation</a>
+    <a href="#activation" data-target="activation">Activation</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <section class="section" id="ingestion">
+    <div class="eyebrow">Layer 1 — Ingestion</div>
+    <h2 class="section-head">Messy identity, on purpose.</h2>
+
+    <div class="beat reveal">
+      <div class="beat-label">What it does</div>
+      <p>Pulled in real e-commerce order/customer data (96K+ customers) — not a toy dataset. Built a synthetic "messy identity" layer on top (emails, phones) — because real customer data never comes in clean.</p>
+    </div>
+
+    <div class="beat decision reveal">
+      <div class="beat-label">The decision</div>
+      <p>Used real transaction data for credibility, synthetic identity data to avoid any privacy risk — best of both. Deliberately made the identity data messy (20% conflicting/duplicate), because a CDP that never has to resolve anything isn't proving it can resolve anything.</p>
+    </div>
+
+    <div class="stat reveal">
+      <div class="beat-label">The number</div>
+      <div class="stat-num">211,644 <span class="u">identity signals</span> generated across 96,096 customers — fully reproducible, same result every time.</div>
+    </div>
+
+    <div class="shot-frame reveal">
+      <img src="assets/d02_L1_snowflake_connection_verified.png" alt="Snowflake connection verified from the CDP ingestion pipeline">
+    </div>
+
+    <div class="beat why reveal">
+      <div class="beat-label">Why it matters</div>
+      <p><strong>B2B lens</strong> — this mirrors a contact appearing twice in a CRM, once from a self-serve trial signup with a personal email, once added later to the enterprise account by an admin with a work email, until identity resolution links them.</p>
+      <p><strong>Also applies in B2C</strong> — the same pattern shows up as a shopper with two loyalty balances across web and app touchpoints, one step short of the omnichannel view most D2C brands are chasing as part of their digitization roadmap.</p>
+    </div>
+  </section>
+
+  <section class="section" id="storage">
+    <div class="eyebrow">Layer 2 — Storage</div>
+    <h2 class="section-head">One clean table everything else stands on.</h2>
+
+    <div class="beat reveal">
+      <div class="beat-label">What it does</div>
+      <p>Joins raw orders, order items, and products into one clean, query-ready table. Builds the foundation every other layer runs on top of.</p>
+    </div>
+
+    <div class="beat decision reveal">
+      <div class="beat-label">The decision</div>
+      <p>Found the conformed order table didn't exist yet — had to build it before segmentation could even start. Joined on the customer's unique ID, not their order ID, so repeat customers link correctly across orders — get this wrong and every later number is wrong.</p>
+    </div>
+
+    <div class="stat reveal">
+      <div class="beat-label">The number</div>
+      <div class="stat-num">99,441 <span class="u">orders</span> cleanly joined to customers, zero orphaned records.</div>
+    </div>
+
+    <div class="shot-frame reveal">
+      <img src="assets/d02_L2_cdp_demo_schemas_created.png" alt="CDP_DEMO schemas created in Snowflake">
+    </div>
+
+    <div class="beat why reveal">
+      <div class="beat-label">Why it matters</div>
+      <p><strong>B2B lens</strong> — this is the same failure mode as joining on contact ID instead of account ID, where a multi-seat enterprise customer gets miscounted as several smaller accounts, understating your real strategic-account footprint in leadership reporting.</p>
+      <p><strong>Also applies in B2C</strong> — a retailer's repeat customer rate being quietly undercounted because the same shopper gets a new ID on every order.</p>
+    </div>
+  </section>
+
+  <section class="section" id="identity">
+    <div class="eyebrow">Layer 3 — Identity Resolution</div>
+    <h2 class="section-head">Merge when certain, flag when not.</h2>
+
+    <div class="beat reveal">
+      <div class="beat-label">What it does</div>
+      <p>Matches customer identities across email, phone, and device signals to spot the same person appearing more than once.</p>
+    </div>
+
+    <div class="beat decision reveal">
+      <div class="beat-label">The decision</div>
+      <p>Ranked signals by trust — email first, phone second, device last — so a matching email always wins over a matching phone, and conflicting signals never get force-merged into the wrong person. Chose to flag uncertain matches for review rather than auto-merge them.</p>
+    </div>
+
+    <div class="stat reveal">
+      <div class="beat-label">The number</div>
+      <div class="stat-num">320 <span class="u">identities</span> cleanly resolved, 2,882 correctly held back as uncertain instead of wrongly merged.</div>
+    </div>
+
+    <div class="shot-frame reveal">
+      <img src="assets/d02_L3_identity_resolution_all_rules_validated.png" alt="Identity resolution rules validated — all four match rules exercised">
+    </div>
+
+    <div class="beat why reveal">
+      <div class="beat-label">Why it matters</div>
+      <p><strong>B2B lens</strong> — a false merge here is the equivalent of collapsing two different buyers at the same company into one contact record, losing the distinction between the economic buyer and the day-to-day user, which breaks account-based selling.</p>
+      <p><strong>Also applies in B2C</strong> — sending a win-back offer to the wrong household, or inflating a customer lifetime value (LTV) number through duplicate profiles.</p>
+    </div>
+  </section>
+
+  <section class="section" id="segmentation">
+    <div class="eyebrow">Layer 4 — Segmentation</div>
+    <h2 class="section-head">The data changed the model.</h2>
+
+    <div class="beat reveal">
+      <div class="beat-label">What it does</div>
+      <p>Splits customers into lifecycle stages (new, active, at-risk, lapsed, win-back) based on how their buying behavior actually changes over time.</p>
+    </div>
+
+    <div class="beat decision reveal">
+      <div class="beat-label">The decision</div>
+      <p>Started with a plan to find a "drop-off cliff" in reorder timing — the data showed no cliff at all, just a smooth decline. Changed the entire segmentation model based on that finding: 97% of customers only ever buy once, so applied full lifecycle staging only to the 3% who are repeat buyers.</p>
+    </div>
+
+    <div class="stat reveal">
+      <div class="beat-label">The number</div>
+      <div class="stat-num">96.9<span class="u">%</span> of customers are single-purchase — the finding that reshaped the whole approach.</div>
+    </div>
+
+    <div class="shot-frame reveal">
+      <img src="assets/d03_L4_customer_segments_counts.png" alt="Customer segment counts by purchase type and lifecycle stage">
+    </div>
+    <div class="shot-frame reveal">
+      <img src="assets/d03_L4_category_breakdown_repeat_vs_single.png" alt="Product category breakdown, repeat vs single-purchase customers">
+    </div>
+
+    <div class="beat why reveal">
+      <div class="beat-label">Why it matters</div>
+      <p><strong>B2B lens</strong> — this is the same call as recognizing that most trial signups never convert to paid, so lifecycle nurture spend should concentrate on the smaller cohort showing real expansion signals.</p>
+      <p><strong>Also applies in B2C</strong> — a marketplace correctly not applying a subscription-style lifecycle model to one-and-done shoppers.</p>
+    </div>
+  </section>
+
+  <section class="section" id="activation">
+    <div class="eyebrow">Layer 5 — Activation &amp; Governance</div>
+    <h2 class="section-head">Sent isn't the same as delivered.</h2>
+
+    <div class="beat reveal">
+      <div class="beat-label">What it does</div>
+      <p>Builds the audience list for a win-back campaign and checks it against opt-outs before anything goes out. Tracks whether the number of customers sent actually matches the number received on the other end.</p>
+    </div>
+
+    <div class="beat decision reveal">
+      <div class="beat-label">The decision</div>
+      <p>Built a standing reconciliation check instead of a one-time audit, so any gap between "sent" and "delivered" is caught automatically, every time.</p>
+    </div>
+
+    <div class="stat reveal">
+      <div class="beat-label">The number</div>
+      <div class="stat-num">2.24<span class="u">%</span> gap between sent and delivered — caught and explained, not hidden.</div>
+    </div>
+
+    <div class="shot-frame reveal">
+      <img src="assets/d04_L5_activation_reconciliation.png" alt="Activation reconciliation — segment sent vs destination received">
+    </div>
+
+    <div class="beat why reveal">
+      <div class="beat-label">Why it matters</div>
+      <p><strong>B2B lens</strong> — this is the reconciliation check a RevOps or Compliance lead asks for after a SOC 2 or GDPR audit, proving opted-out accounts actually stayed suppressed across every downstream system.</p>
+      <p><strong>Also applies in B2C</strong> — a retailer's marketing team assuming an audience list "sent" equals "reached."</p>
+      <p class="caveat">Production caveat: suppression and delivery-failure rates here are synthetic/seeded for the case study — a real system sources this from an actual consent-management platform and ESP delivery logs.</p>
+    </div>
+  </section>
+
+  <section class="close-wrap reveal">
+    <p class="close-line">96.9% of customers never came back — the segmentation model, and the campaign built on top of it, only work because that number was allowed to change the plan.</p>
+  </section>
+
+  <section class="contact">
+    <div class="actions">
+      <a href="https://www.linkedin.com/in/chayan-narang/" target="_blank" rel="noopener" class="btn-primary">Connect on LinkedIn</a>
+      <a href="https://raw.githubusercontent.com/chayannarang/Portfolio/main/Chayan_Narang_CV_Master.docx" download class="btn-line">Download CV</a>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <span>Chayan Narang · SPJIMR MBA · CSPO · Azure AZ-900</span>
+    <span>Senior Product Manager</span>
+  </div>
+</footer>
+
+<script>
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.16});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+function setMiniNavOffset(){
+  const siteNav=document.querySelector('body > nav:not(.mini-nav)');
+  const miniNav=document.getElementById('miniNav');
+  if(siteNav&&miniNav){miniNav.style.top=siteNav.offsetHeight+'px';}
+}
+setMiniNavOffset();
+window.addEventListener('load',setMiniNavOffset);
+window.addEventListener('resize',setMiniNavOffset);
+
+const sectionIO=new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    const link=document.querySelector(`.mini-nav a[data-target="${entry.target.id}"]`);
+    if(!link)return;
+    if(entry.isIntersecting){link.classList.add('active');}
+    else{link.classList.remove('active');}
+  });
+},{rootMargin:'-45% 0px -50% 0px',threshold:0});
+document.querySelectorAll('.section[id]').forEach(s=>sectionIO.observe(s));
+</script>
+</body>
+</html>

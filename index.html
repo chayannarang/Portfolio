@@ -60,6 +60,14 @@ nav{position:sticky;top:0;z-index:50;background:rgba(251,251,249,0.82);backdrop-
 .proto-arrow{color:var(--accent);transition:transform .2s ease;display:inline-block;}
 .proto-cta:hover .proto-arrow{transform:translateX(4px);}
 
+hr.rule{border:none;border-top:1px solid var(--line);margin:2.25rem 0;}
+hr.proto-rule{margin-top:3.5rem;}
+.proto-group{margin-top:1.6rem;}
+.proto-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+@media(max-width:640px){
+  .proto-grid{grid-template-columns:1fr;}
+}
+
 .hero-hook{
   display:block;text-decoration:none;margin-top:2.2rem;padding-top:1.8rem;
   border-top:1px dashed var(--line);max-width:56ch;
@@ -189,10 +197,20 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
       <a href="https://www.linkedin.com/in/chayan-narang/" target="_blank" rel="noopener" class="btn-primary">Connect on LinkedIn</a>
       <a href="https://raw.githubusercontent.com/chayannarang/Portfolio/main/Chayan_Narang_CV_Master.docx" download class="btn-line">Download CV</a>
     </div>
-    <a href="case-study.html" class="proto-cta">
-      <span class="proto-label">AI Product Management — Live Prototype</span>
-      <span class="proto-q">Should a PM still retype every finished design into a ticket by hand? <span class="proto-arrow">→</span></span>
-    </a>
+    <hr class="rule proto-rule">
+    <div class="proto-group">
+      <div class="eyebrow">Hands-on builds</div>
+      <div class="proto-grid">
+        <a href="case-study.html" class="proto-cta">
+          <span class="proto-label">AI Product Management — Live Prototype</span>
+          <span class="proto-q">Should a PM still retype every finished design into a ticket by hand? <span class="proto-arrow">→</span></span>
+        </a>
+        <a href="cdp.html" class="proto-cta">
+          <span class="proto-label">Warehouse-Native Mini-CDP — Snowflake</span>
+          <span class="proto-q">96.9% of customers never come back. Does your lifecycle model know that? <span class="proto-arrow">→</span></span>
+        </a>
+      </div>
+    </div>
   </header>
 
   <section class="proof">
